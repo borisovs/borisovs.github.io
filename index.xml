@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on Perfomon</title>
-    <link>https://borisovs.github.io/</link>
+    <link>http://www.perfomon.com/</link>
     <description>Recent content in Home on Perfomon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 12 Feb 2018 15:37:57 +0700</lastBuildDate>
     
-	<atom:link href="https://borisovs.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.perfomon.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>https://borisovs.github.io/about/</link>
+      <link>http://www.perfomon.com/about/</link>
       <pubDate>Thu, 06 Dec 2018 09:29:16 +1000</pubDate>
       
-      <guid>https://borisovs.github.io/about/</guid>
+      <guid>http://www.perfomon.com/about/</guid>
       <description>      </description>
     </item>
     
     <item>
       <title>History</title>
-      <link>https://borisovs.github.io/history/</link>
+      <link>http://www.perfomon.com/history/</link>
       <pubDate>Thu, 06 Dec 2018 09:29:16 +1000</pubDate>
       
-      <guid>https://borisovs.github.io/history/</guid>
+      <guid>http://www.perfomon.com/history/</guid>
       <description> About Heading </description>
     </item>
     
