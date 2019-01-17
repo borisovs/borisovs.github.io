@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Perfomon documentation">
+    <meta name="author" content="Perfomon developers">
+</head>
+
+<script src="bootstrap/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<title>Documentation</title>
+
+<!-- Bootstrap core CSS -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+<body style="padding-top: 70px;">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Documentation</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Console
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="console.html">Guide</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Agent
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="agent.html">Installation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Balancer
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="balancer.html">Installation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="db.html">Installation</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Console guide</div>
+        <div class="panel-body">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#balancer">Balancers</a></li>
+                <li><a data-toggle="tab" href="#agent">Agents</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="balancer" class="tab-pane fade in active" style="padding-top: 10px;">
+                    <p>Console - it's a software which shows you statistics about agents and balancers.</p>
+                    <p>"Balancers" page shows you list of all balancers registered in the database.</p>
+                    <p>If you want to see statistics of the balancer do the following:</p>
+                    <ul class="list-group" style="padding-top: 10px;">
+                        <li class="list-group-item">Select balancer in the table<span class="badge">1</span></li>
+                        <li class="list-group-item">Press "Statistics" button<span class="badge">2</span></li>
+                        <li class="list-group-item">Choose dates "From" and "To"<span class="badge">3</span></li>
+                        <li class="list-group-item">Press "Refresh" button<span class="badge">4</span></li>
+                    </ul>
+
+                    <div class="alert alert-danger">
+                        Each balancer sends one heartbeat per 10 minutes or 144 per a day.<br>
+                        So if the graph value is <strong>less than 140</strong> - balancer didn't work some time
+                    </div>
+
+                    <p>You can sort and filter balancers table.</p>
+                    <p>Click on the column header to change sorting mode (ASC, DESC) for the table by this column</p>
+                    <p>Type some text in the filter't text field and table will filtered by active column</p>
+                    <img src="images/console_bal.png" class="img-responsive center-block" alt="Balancers page" style="padding-bottom: 10px; width:70%">
+
+                    <div class="alert alert-success">
+                        If you need to print or to save in PDF the last balancer statistics, double click on the balancer row<br>
+                        and press <strong>"Reports"</strong> button in the dialog, then you can select report you want.<br>
+                        <strong>"Last activity"</strong>  - balancer activity last day report<br>
+                        <strong>"Daily activity"</strong> - balancer activity report for the selected day<br>
+                   </div>
+
+                </div>
+                <div id="agent" class="tab-pane fade" style="padding-top: 10px;">
+                    <p>Console - it's a software which shows you statistics about agents and balancers.</p>
+                    <p>"Agents" page shows you list of all agents registered in the database.</p>
+                    <p>If you want to see statistics of the agent do the following:</p>
+                    <ul class="list-group" style="padding-top: 10px;">
+                        <li class="list-group-item">Select agent in the table<span class="badge">1</span></li>
+                        <li class="list-group-item">Press "Statistics" button<span class="badge">2</span></li>
+                        <li class="list-group-item">Choose date<span class="badge">3</span></li>
+                        <li class="list-group-item">Press "Refresh" button<span class="badge">4</span></li>
+                        <li class="list-group-item">Choose statistics type that you want to see (CPU is the default)<span class="badge">5</span></li>
+                    </ul>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">CPU statistics</div>
+                        <div class="panel-body">
+                            <img src="images/console_cpu.png" class="img-responsive center-block" alt="CPU" style="padding-bottom: 10px; width:70%">
+                        </div>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">Network statistics</div>
+                        <div class="panel-body">
+                            <img src="images/console_net.png" class="img-responsive center-block" alt="NET" style="padding-bottom: 10px; width:70%">
+                        </div>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">RAM statistics</div>
+                        <div class="panel-body">
+                            <img src="images/console_ram.png" class="img-responsive center-block" alt="RAM" style="padding-bottom: 10px; width:70%">
+                        </div>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">HDD statistics</div>
+                        <div class="panel-body">
+                            <img src="images/console_hdd.png" class="img-responsive center-block" alt="RAM" style="padding-bottom: 10px; width:70%">
+                        </div>
+                    </div>
+
+                    <p>You can sort and filter agents table.</p>
+                    <p>Click on the column header to change sorting mode (ASC, DESC) for the table by this column</p>
+                    <p>Type some text in the filter't text field and table will filtered by active column</p><br>
+
+                    <p>Also you can logically group the agents.</p>
+                    <p>Just create any "Departments", and move the agent there</p>
+                    <div class="alert alert-success">
+                        If you need to print or to save in PDF the last or daily agent statistics, double click on the agent row<br>
+                        and press <strong>"Reports"</strong> button in the dialog, then you can select report you want.<br>
+                        <strong>"Last activity"</strong>  - agent activity last day report<br>
+                        <strong>"Daily activity"</strong> - agent activity report for the selected day<br>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Perfomon documentation">
+    <meta name="author" content="Perfomon developers">
+</head>
+
+<script src="bootstrap/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<title>Documentation</title>
+
+<!-- Bootstrap core CSS -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+<body style="padding-top: 70px;">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Documentation</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Console
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="console.html">Guide</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Agent
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="agent.html">Installation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Balancer
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="balancer.html">Installation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="db.html">Installation</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Agents guide</div>
+        <div class="panel-body">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#windows">Windows</a></li>
+                <li><a data-toggle="tab" href="#linux">Linux</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="windows" class="tab-pane fade in active" style="padding-top: 10px;">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Download and run perfomon_agent.msi</div>
+                        <div class="panel-body">
+                            <img src="images/01_ag.png" class="img-rounded" alt="Installer">
+                        </div>
+                    </div>
+
+                <div class="panel panel-warning">
+                    <div class="panel-heading">Configuration</div>
+                    <div class="alert alert-success">
+                        After installation, you should configure the agent by changing parameters in the C:\Program Files\conf\agent.conf.xml<br>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>endpoint\address</td>
+                            <td>Host where balancer is working</td>
+                        </tr>
+                        <tr>
+                            <td>endpoint\port</td>
+                            <td>Port that balancer is listening</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert alert-danger">
+                        If you changed a configuration file, you need to restart the agent service in the services.msc
+                    </div>
+
+                   </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Orca</div>
+                        <div class="panel-body">
+                            <p>All these parameters you can set up by the <a href="https://docs.microsoft.com/en-us/windows/desktop/msi/orca-exe">Orca.</a></p>
+                            <p>Download Orca and open perfomon_agent.msi then change values of the parameters (ENDPOINT_HOST, ENDPOINT_PORT) and run perfomon_agent.msi</p>
+                            <p>The right way to deploy the agent in Active Directory is using <a href="https://support.microsoft.com/en-us/help/816102/how-to-use-group-policy-to-remotely-install-software-in-windows-server-2008-and-in-windows-server-2003">the group policy</a>
+                             this is a reason why perfomon_agent.msi doesn't ask you anything during the installation process.</p>
+                            <ul class="list-group">
+                                <li class="list-group-item">Configure perfomon_agent.msi in Orca<span class="badge">1</span></li>
+                                <li class="list-group-item">Create the new deploy policy at the domain controller<span class="badge">2</span></li>
+                                <li class="list-group-item">Deploy the agent through the group policy<span class="badge">3</span></li>
+                            </ul>
+                            <div class="panel-body">
+                                <img src="images/agent_orca.png" class="img-rounded" alt="Orca">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="linux" class="tab-pane fade" style="padding-top: 10px;">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Ubuntu. Download and install perfomon_agent_1.0.0_amd64.deb</div>
+                        <div class="panel-body">
+                            <div class="alert alert-success">
+                                <strong>sudo dpkg -i perfomon_agent_1.0.0_amd64.deb<br>sudo apt-get install -f</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">RedHat. Download and install perfomon_agent_1.0.0_amd64.rpm</div>
+                        <div class="panel-body">
+                            <div class="alert alert-success">
+                                <strong>su - root<br>dnf localinstall perfomon_agent_1.0.0_amd64.rpm</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Configuration</div>
+                        <div class="alert alert-success">
+                            After installation, you should configure the agent by changing parameters in the /etc/agent.conf.xml<br>
+                            and start the agent service<br>
+                            <strong>systemctl start agent</strong><br>
+                            Also you should enable starting the agent service during the booting process<br>
+                            <strong>systemctl enable agent</strong>
+                        </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>endpoint\address</td>
+                                <td>The host where a balancer is working</td>
+                            </tr>
+                            <tr>
+                                <td>endpoint\port</td>
+                                <td>The port which a balancer is listening</td>
+                            </tr>
+                            <tr>
+                                <td>logfile\path</td>
+                                <td>Agent log file</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="alert alert-danger">
+                            If you changed a configuration file, you need to restart the agent service<br><strong>systemctl restart agent</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

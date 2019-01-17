@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Perfomon documentation">
+    <meta name="author" content="Perfomon developers">
+</head>
+
+<script src="bootstrap/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<title>Documentation</title>
+
+<!-- Bootstrap core CSS -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+<body style="padding-top: 70px;">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Documentation</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Console
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="console.html">Guide</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Agent
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="agent.html">Installation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Balancer
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="balancer.html">Installation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="db.html">Installation</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Balancers guide</div>
+        <div class="panel-body">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#windows">Windows</a></li>
+                <li><a data-toggle="tab" href="#linux">Linux</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="windows" class="tab-pane fade in active" style="padding-top: 10px;">
+                    <div class="alert alert-danger">
+                        The Balancer uses postgresql database server to store the data. Be sure you have <a href="db.html">installed and configured</a> one.<br>
+                    </div>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Download and run perfomon_balancer.msi</div>
+                        <div class="panel-body">
+                            <img src="images/01_bal.png" class="img-rounded" alt="Installer">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Type in ip address and port which the balancer should listen</div>
+                        <div class="panel-body">
+                            <img src="images/02_bal.png" class="img-rounded" alt="Port and address">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Type in DB address or hostname, DB port, DB user and password,
+                            also setup a connection pool</div>
+                        <div class="panel-body">
+                            <img src="images/03_bal.png" class="img-rounded" alt="Database information">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Choose the destination folder, run next and install</div>
+                        <div class="panel-body">
+                            <img src="images/04_bal.png" class="img-rounded" alt="Destination folder">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">All these parameters you can set up by the
+                            <a href="https://docs.microsoft.com/en-us/windows/desktop/msi/orca-exe">Orca</a>
+                            <br>Download the Orca and open perfomon_balancer.msi in it.<br>
+                            Also you can change any parameter after installation in the DESTINATION_FOLDER\conf\balancer.conf.xml</div>
+                        <div class="panel-body">
+                            <img src="images/bal_orca.png" class="img-rounded" alt="Orca">
+                        </div>
+                        <div class="alert alert-danger">
+                            If you changed a configuration file, you need to restart the Balancer service in the services.msc
+                        </div>
+                    </div>
+
+                </div>
+                <div id="linux" class="tab-pane fade" style="padding-top: 10px;">
+                    <div class="alert alert-danger">
+                        The Balancer uses postgresql database server to store the data. Be sure you have <a href="db.html">installed and configured</a> one.<br>
+                    </div>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Ubuntu. Download and install perfomon_balancer_1.0.0_amd64.deb</div>
+                        <div class="panel-body">
+                            <div class="alert alert-success">
+                                <strong>sudo dpkg -i perfomon_balancer_1.0.0_amd64.deb<br>sudo apt-get install -f</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">RedHat. Download and install balancer_1.0.0_amd64.rpm</div>
+                        <div class="panel-body">
+                            <div class="alert alert-success">
+                                <strong>su - root<br>dnf localinstall balancer_1.0.0_amd64.rpm</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Configuration</div>
+                        <div class="alert alert-success">
+                            After installation, you should configure the balancer by changing parameters in the /etc/balancer.conf.xml<br>
+                            and start the balancer service<br>
+                            <strong>systemctl start balancer</strong><br>
+                            Also you should enable starting the balancer during the booting process<br>
+                            <strong>systemctl enable balancer</strong>
+                        </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>listen\address</td>
+                                <td>This is an address which a balancer will listen</td>
+                            </tr>
+                            <tr>
+                                <td>listen\port</td>
+                                <td>This is a port which a balancer will open</td>
+                            </tr>
+                            <tr>
+                                <td>logfile\path</td>
+                                <td>Balancer log file</td>
+                            </tr>
+                            <tr>
+                                <td>database\address</td>
+                                <td>Hostname or IP address of a PostgreSQL database server</td>
+                            </tr>
+                            <tr>
+                                <td>database\port</td>
+                                <td>Port which a PostgreSQL server is listening</td>
+                            </tr>
+                            <tr>
+                                <td>database\pool</td>
+                                <td>The Connections count to the database server</td>
+                            </tr>
+                            <tr>
+                                <td>database\dbname</td>
+                                <td>Name of the balancer database</td>
+                            </tr>
+                            <tr>
+                                <td>database\user</td>
+                                <td>Database user</td>
+                            </tr>
+                            <tr>
+                                <td>database\pass</td>
+                                <td>Password of the database user</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="alert alert-danger">
+                            If you changed configuration file, you need to restart the Balancer service<br><strong>systemctl restart balancer</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>

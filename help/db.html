@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Perfomon documentation">
+    <meta name="author" content="Perfomon developers">
+</head>
+
+<script src="bootstrap/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<title>Documentation</title>
+
+<!-- Bootstrap core CSS -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+<body style="padding-top: 70px;">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Documentation</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Console
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="console.html">Guide</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Agent
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="agent.html">Installation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Balancer
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="balancer.html">Installation</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Database
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="db.html">Installation</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Database guide</div>
+        <div class="panel-body">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#windows">Windows</a></li>
+                <li><a data-toggle="tab" href="#linux">Linux</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="windows" class="tab-pane fade in active" style="padding-top: 10px;">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Download and run an installer</div>
+                        <p>Interactive installer by EnterpriseDB (version 9.5.0 or higher is required)</p>
+                        <p>https://www.enterprisedb.com/downloads/postgres-postgresql-downloads#windows</p>
+                        <p>This installer includes the PostgreSQL server, pgAdmin; a graphical tool for managing and developing your databases, and StackBuilder.</p>
+                        <p>A package manager that can be used to download and install additional PostgreSQL tools and drivers.</p>
+                        <p>Stackbuilder includes management, integration, migration, replication, geospatial, connectors and other tools.</p>
+                        <p>This installer can run in graphical or silent install modes.</p>
+                        <p>The installer is designed to be a straightforward, fast way to get up and running with PostgreSQL on Windows.</p>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Basic Server Setup</div>
+                        <p>Run the <mark>pgAdmin</mark> utility.</p>
+                        <p>Click File ‣ Add Server and complete the New Server Registation dialog box to register a new server.</p>
+                        <p>Ensure the Host is set to localhost and Port is 5432 (unless you have configured PostgreSQL for a different port).</p>
+                        <p>To connect to the database server, double-click the database server item and provide the password when prompted.</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">Create the new login role named perfomon_user<span class="badge">1</span></li>
+                            <li class="list-group-item">Set password for this role<span class="badge">2</span></li>
+                            <li class="list-group-item">Create the new database with the owner <mark>perfomon_user</mark><span class="badge">3</span></li>
+                        </ul>
+                        <div class="panel-body">
+                            <img src="images/pgadmin.png" class="img-rounded" alt="Orca">
+                        </div>
+
+                        <p>To manage users, you first have to edit <mark>C:\Program Files\PostgreSQL\9.5\data\pg_hba.conf</mark> and modify the default configuration which is very locked down and secure.</p>
+                        <p>For example, if you want postgres to manage its own users (not linked with system users), you will add the following line:</p>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>TYPE</th>
+                                <th>DATABASE</th>
+                                <th>USER</th>
+                                <th>ADDRESS</th>
+                                <th>METHOD</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>host</td>
+                                <td>all</td>
+                                <td>all</td>
+                                <td>192.168.1.0/24</td>
+                                <td>md5</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p>Which means that on your local network (192.168.1.0/24 - replace with your own local network!), postgres users can connect through the network to the database providing a classical couple user / password.</p>
+                        <p>Besides allowing a user to connect over the network to the to a database on the server, you must enable PostgreSQL to listen across different networks.</p>
+                        <p>To do that, open up <mark>C:\Program Files\PostgreSQL\9.5\data\postgresql.conf</mark> in your favourite editor and alter the listen_addresses as below to listen on all network interfaces:</p>
+                        <div class="alert alert-success">
+                            <strong>listen_addresses = '0.0.0.0'</strong>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Restarting the server</div>
+                        <p>After configuring the networking / users you may need to reload the server</p>
+                        <p>Run <mark>services.msc</mark> then find and restart Postgresql service in the list of services</p>
+
+                    </div>
+
+                </div>
+
+                <div id="linux" class="tab-pane fade" style="padding-top: 10px;">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Installation</div>
+                        <div class="panel-body">
+                            <p>To install the server locally use the command line and type:</p>
+                            <div class="alert alert-success">
+                                <strong>sudo apt-get install postgresql postgresql-contrib</strong>
+                            </div>
+                            <p>This will install the latest version available in your Ubuntu release and the commonly used add-ons for it.</p>
+                            <p>To manage users, you first have to edit <mark>/etc/postgresql/9.5/main/pg_hba.conf</mark> and modify the default configuration which is very locked down and secure.</p>
+                            <p>For example, if you want postgres to manage its own users (not linked with system users), you will add the following line:</p>
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>TYPE</th>
+                                    <th>DATABASE</th>
+                                    <th>USER</th>
+                                    <th>ADDRESS</th>
+                                    <th>METHOD</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>host</td>
+                                    <td>all</td>
+                                    <td>all</td>
+                                    <td>192.168.1.0/24</td>
+                                    <td>md5</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p>Which means that on your local network (192.168.1.0/24 - replace with your own local network!), postgres users can connect through the network to the database providing a classical couple user / password.</p>
+                            <p>Besides allowing a user to connect over the network to the to a database on the server, you must enable PostgreSQL to listen across different networks.</p>
+                            <p>To do that, open up <mark>/etc/postgresql/9.5/main/postgresql.conf</mark> in your favourite editor and alter the listen_addresses as below to listen on all network interfaces:</p>
+                            <div class="alert alert-success">
+                                <strong>listen_addresses = '0.0.0.0'</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Basic Server Setup</div>
+                        <p>To start off, we need to set the password of the PostgreSQL user (role) called <mark>"postgres"</mark>; we will not be able to access the server externally otherwise.</p>
+                        <p>As the local "postgres" Linux user, we are allowed to connect and manipulate the server using the psql command.</p>
+                        <p>In a terminal, type:</p>
+                        <div class="alert alert-success">
+                        <strong>sudo -u postgres psql postgres</strong>
+                        </div>
+                        <p>this connects as a role with same name as the local user, i.e. "postgres", to the database called "postgres" (1st argument to psql).</p>
+                        <p>Set a password for the "postgres" database role using the command:</p>
+                        <div class="alert alert-success">
+                            <strong>\password postgres</strong>
+                        </div>
+                        <p>and give your password when prompted. The password text will be hidden from the console for security purposes.</p>
+                        <p>Type <mark>Control+D</mark> or <mark>\q</mark> to exit the posgreSQL prompt.</p>
+
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Create database</div>
+                        <p>To create a database with a user that have full rights on the database, use the following command:</p>
+                        <div class="alert alert-success">
+                            <strong>sudo -u postgres createuser -D -A -P perfomon_user</strong>
+                        </div>
+                        <div class="alert alert-success">
+                            <strong>sudo -u postgres createdb -O perfomon_user perfomon</strong>
+                        </div>
+                        <p>The first command line creates the user with no database creation rights <mark>(-D)</mark> with no add user rights <mark>(-A)</mark> and will prompt you for entering a password <mark>(-P)</mark>.</p>
+                        <p>The second command line create the database <mark>'perfomon'</mark> with <mark>'perfomon_user'</mark> as owner.</p>
+                        <p>This little example will probably suit most of your needs. For more details, please refer to the corresponding man pages or the online documentation.</p>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Restarting the server</div>
+                        <p>After configuring the networking / users you may need to reload the server, here is a suggested command to do so.</p>
+                        <div class="alert alert-success">
+                            <strong>sudo systemctl restart postgresql</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

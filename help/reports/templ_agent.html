@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Agent report</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="Perfomon documentation">
+        <meta name="author" content="Perfomon developers">
+
+        <!-- Bootstrap core CSS -->
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="../bootstrap/js/jquery.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <style>
+            @media print
+            {
+                table { page-break-after:auto }
+                tr    { page-break-inside:avoid; page-break-after:auto }
+                td    { page-break-inside:avoid; page-break-after:auto }
+                thead { display:table-header-group }
+                tfoot { display:table-footer-group }
+            }
+        </style>
+	</head>
+	<body style="padding-top: 20px;">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading report-info"></div>
+                <div class="panel-body">
+
+                    <div class="panel panel-warning">
+                    <div class="panel-heading">General information</div>
+                    <div class="panel-body">
+
+                        <table  class="table table-condensed table-bordered table-striped agentgeneral">
+
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                    <tr>
+                                        <td>Hostname</td>
+                                        <td class="hostname"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td class="address"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>GUID</td>
+                                        <td class="guid"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Heartbeat</td>
+                                        <td class="heartbeat"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Version</td>
+                                        <td class="version"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Protocol</td>
+                                        <td class="protocol"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>OU</td>
+                                        <td class="ou"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Period</td>
+                                        <td class="period"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>System</td>
+                                        <td class="system"></td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                    <div class="panel-heading cpuunits"></div>
+                    <div class="panel-body">
+                        <canvas id="cpuChartContainer" style="width:100%; height:200px;"></canvas>
+                    </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                    <div class="panel-heading memunits"></div>
+                    <div class="panel-body">
+                        <canvas id="memChartContainer" style="width:100%; height:200px;"></canvas>
+                    </div>
+                    </div>
+
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading hddunits"></div>
+                        <div class="panel-body hddpanel">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading netunits"></div>
+                        <div class="panel-body netpanel">
+                        </div>
+                    </div>
+
+                    </div>
+
+       </div>
+    </div>
+	</body>
+
+</html>
